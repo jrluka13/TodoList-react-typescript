@@ -1,4 +1,5 @@
 import React from "react";
+import { isJSDocUnknownTag } from "typescript";
 import { ITodo } from "../interfaces";
 
 type TodoListProps = {
@@ -39,25 +40,34 @@ export const TodoList: React.FC<TodoListProps> = ({
         return (
           <li className={classes.join(" ")} key={todo.id}>
             <label>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={onToggle.bind(null, todo.id)}
-              />
-              <span>{todo.title}</span>
               <div>
-                <i
-                  className="material-icons yellow-text"
-                  onClick={(event) => editHandler(event,todo.id)}
-                >
-                  edit
-                </i>
-                <i
-                  className="material-icons red-text"
-                  onClick={(event) => removeHandler(event, todo.id)}
-                >
-                  delete
-                </i>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={onToggle.bind(null, todo.id)}
+                />
+                <span>{todo.title}</span>
+                {}
+                <p>Время создания: {todo.dateCreate}</p>
+              </div>
+
+              <div>
+                <div style={{display:'flex', justifyContent:'flex-end'}}>
+                  <i
+                    className="material-icons yellow-text"
+                    onClick={(event) => editHandler(event, todo.id)}
+                  >
+                    edit
+                  </i>
+                  <i
+                    className="material-icons red-text"
+                    onClick={(event) => removeHandler(event, todo.id)}
+                  >
+                    delete
+                  </i>
+                </div>
+
+                <p>{todo.dateDelete}</p>
               </div>
             </label>
           </li>

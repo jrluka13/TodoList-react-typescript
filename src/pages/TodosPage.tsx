@@ -23,6 +23,9 @@ export const TodosPage: React.FC = () => {
       title: title,
       id: Date.now(),
       completed: false,
+      dateCreate:
+        new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString(),
+      dateDelete: "",
     };
     // setTodos([newTodo, ...todos])
     setTodos((prev) => [newTodo, ...prev]);
@@ -33,6 +36,14 @@ export const TodosPage: React.FC = () => {
       prev.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
+          if (todo.completed === true) {
+            todo.dateDelete ="Время окончания: " + 
+              new Date().toLocaleDateString() +
+              " " +
+              new Date().toLocaleTimeString();
+          } else {
+            todo.dateDelete = "";
+          }
         }
         return todo;
       })
@@ -49,12 +60,12 @@ export const TodosPage: React.FC = () => {
   const editHandler = (id: number) => {
     console.log(todos);
     const text = prompt("Измените текущее задание!");
-    
+
     setTodos((prev) =>
       prev.map((todo) => {
         if (todo.id === id && text !== null) {
           console.log(1232);
-          
+
           todo.title = text;
         }
         return todo;
