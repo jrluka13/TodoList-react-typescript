@@ -40,5 +40,6 @@ code {
 }
 
 .todo i {
+  margin-right: 1rem;
   z-index: 2;
 }
