@@ -48,7 +48,7 @@ export const TodosPage: React.FC = () => {
 
   const editHandler = (id: number) => {
     console.log(todos);
-    let text: string = prompt("Измените текущее задание!");
+    const text = prompt("Измените текущее задание!");
     
     setTodos((prev) =>
       prev.map((todo) => {
