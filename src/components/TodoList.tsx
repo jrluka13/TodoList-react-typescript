@@ -1,6 +1,6 @@
 import React from "react";
 import { isJSDocUnknownTag } from "typescript";
-import { ITodo } from "../interfaces";
+import { ITodo } from "../interfaceTodo";
 
 type TodoListProps = {
   todos: ITodo[];
@@ -52,7 +52,7 @@ export const TodoList: React.FC<TodoListProps> = ({
               </div>
 
               <div>
-                <div style={{display:'flex', justifyContent:'flex-end'}}>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
                   <i
                     className="material-icons yellow-text"
                     onClick={(event) => editHandler(event, todo.id)}

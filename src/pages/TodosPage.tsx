@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TodoForm } from "../components/TodoForm";
 import { TodoList } from "../components/TodoList";
-import { ITodo } from "../interfaces";
+import { ITodo } from "../interfaceTodo";
 
 declare var confirm: (question: string) => boolean;
 declare var prompt: (text: string) => string;
@@ -27,7 +27,6 @@ export const TodosPage: React.FC = () => {
         new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString(),
       dateDelete: "",
     };
-    // setTodos([newTodo, ...todos])
     setTodos((prev) => [newTodo, ...prev]);
   };
 
@@ -37,7 +36,8 @@ export const TodosPage: React.FC = () => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
           if (todo.completed === true) {
-            todo.dateDelete ="Время окончания: " + 
+            todo.dateDelete =
+              "Время окончания: " +
               new Date().toLocaleDateString() +
               " " +
               new Date().toLocaleTimeString();
