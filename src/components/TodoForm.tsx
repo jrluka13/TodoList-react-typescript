@@ -23,6 +23,9 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
+      if (ref.current!.value.trim().length === 0) {
+        return
+      }
       props.onAdd(ref.current!.value);
       ref.current!.value = "";
     }
