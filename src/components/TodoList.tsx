@@ -1,6 +1,6 @@
 import React from "react";
-import { isJSDocUnknownTag } from "typescript";
 import { ITodo } from "../interfaceTodo";
+import { FormattedMessage } from "react-intl";
 
 type TodoListProps = {
   todos: ITodo[];
@@ -16,7 +16,7 @@ export const TodoList: React.FC<TodoListProps> = ({
   onEdit,
 }) => {
   if (todos.length === 0) {
-    return <p className="center">Пока дел нет!</p>;
+    return <p className="center"><FormattedMessage id='no-task'/></p>;
   }
 
   const removeHandler = (event: React.MouseEvent, id: number) => {
@@ -48,7 +48,7 @@ export const TodoList: React.FC<TodoListProps> = ({
                 />
                 <span>{todo.title}</span>
                 {}
-                <p>Время создания: {todo.dateCreate}</p>
+                <p><FormattedMessage id='time-create'/> {todo.dateCreate}</p>
               </div>
 
               <div>
@@ -67,7 +67,7 @@ export const TodoList: React.FC<TodoListProps> = ({
                   </i>
                 </div>
 
-                <p>{todo.dateDelete}</p>
+                <p><FormattedMessage id='time-end'/> {todo.dateDelete}</p>
               </div>
             </label>
           </li>

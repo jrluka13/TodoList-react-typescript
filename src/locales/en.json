@@ -1,0 +1,9 @@
+{
+  "nav-title": "TodoList",
+  "to-do-list": "To-do list",
+  "info": "Information",
+  "enter-new-task": "Enter the name of the case",
+  "no-task": "No cases yet",
+  "time-create": "Time of creation: ",
+  "time-end": "End time: "
+}

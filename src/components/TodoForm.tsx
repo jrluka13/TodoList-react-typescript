@@ -1,4 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useContext } from "react";
+import { useState } from "react";
+import { FormattedMessage } from "react-intl";
+import { SwitchContext } from "../context/SwitchContext";
 
 interface TodoFormProps {
   onAdd(title: string): void;
@@ -6,6 +9,17 @@ interface TodoFormProps {
 
 export const TodoForm: React.FC<TodoFormProps> = (props) => {
   const ref = useRef<HTMLInputElement>(null);
+  const { checked } = useContext(SwitchContext);
+
+  const [placeholderInput, setPlaceholderInput] = useState("");
+
+  useEffect(() => {
+    if (!checked) {
+      setPlaceholderInput("Введите название дела");
+    } else {
+      setPlaceholderInput("Enter the name of the case");
+    }
+  },[setPlaceholderInput]);
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
@@ -20,11 +34,11 @@ export const TodoForm: React.FC<TodoFormProps> = (props) => {
         ref={ref}
         type="text"
         id="title"
-        placeholder="Введите название дела"
+        // placeholder={placeholderInput}
         onKeyPress={keyPressHandler}
       />
       <label htmlFor="title" className="active">
-        Введите название дела
+        <FormattedMessage id="enter-new-task" />
       </label>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TodoForm } from "../components/TodoForm";
 import { TodoList } from "../components/TodoList";
 import { ITodo } from "../interfaceTodo";
+import { FormattedMessage } from "react-intl";
 
 declare var confirm: (question: string) => boolean;
 declare var prompt: (text: string) => string;
@@ -37,7 +38,6 @@ export const TodosPage: React.FC = () => {
           todo.completed = !todo.completed;
           if (todo.completed === true) {
             todo.dateDelete =
-              "Время окончания: " +
               new Date().toLocaleDateString() +
               " " +
               new Date().toLocaleTimeString();
