@@ -58,14 +58,11 @@ export const TodosPage: React.FC = () => {
   };
 
   const editHandler = (id: number) => {
-    console.log(todos);
     const text = prompt("Измените текущее задание!");
 
     setTodos((prev) =>
       prev.map((todo) => {
         if (todo.id === id && text !== null) {
-          console.log(1232);
-
           todo.title = text;
         }
         return todo;

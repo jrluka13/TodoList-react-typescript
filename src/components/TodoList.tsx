@@ -1,5 +1,5 @@
 import React from "react";
-import { isJSDocUnknownTag } from "typescript";
+import {TodoItem } from './TodoItem';
 import { ITodo } from "../interfaceTodo";
 
 type TodoListProps = {
@@ -19,13 +19,11 @@ export const TodoList: React.FC<TodoListProps> = ({
     return <p className="center">Пока дел нет!</p>;
   }
 
-  const removeHandler = (event: React.MouseEvent, id: number) => {
-    event.preventDefault();
+  const removeHandler = (id: number) => {
     onRemove(id);
   };
 
-  const editHandler = (event: React.MouseEvent, id: number) => {
-    event.preventDefault();
+  const editHandler = ( id: number) => {
     onEdit(id);
   };
 
@@ -36,42 +34,14 @@ export const TodoList: React.FC<TodoListProps> = ({
         if (todo.completed) {
           classes.push("completed");
         }
-
         return (
-          <li className={classes.join(" ")} key={todo.id}>
-            <label>
-              <div>
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={onToggle.bind(null, todo.id)}
-                />
-                <span>{todo.title}</span>
-                {}
-                <p>Время создания: {todo.dateCreate}</p>
-              </div>
-
-              <div>
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <i
-                    className="material-icons yellow-text"
-                    onClick={(event) => editHandler(event, todo.id)}
-                  >
-                    edit
-                  </i>
-                  <i
-                    className="material-icons red-text"
-                    onClick={(event) => removeHandler(event, todo.id)}
-                  >
-                    delete
-                  </i>
-                </div>
-
-                <p>{todo.dateDelete}</p>
-              </div>
-            </label>
-          </li>
-        );
+          <TodoItem 
+            todo={todo} 
+            onToggle={onToggle.bind(null, todo.id)} 
+            editHandler={editHandler.bind(null, todo.id)}
+            removeHandler={removeHandler.bind(null, todo.id)}
+          />
+        )
       })}
     </ul>
   );
